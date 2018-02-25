@@ -1,0 +1,9 @@
+*
+!.gitignore
+!cache
+!cache/README.md
+!proxies
+!proxies/README.md
+!admin.sql
+!admin+frontend.sql
+
