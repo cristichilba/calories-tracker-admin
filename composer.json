@@ -44,7 +44,7 @@
     "dotkernel/dot-twigrenderer": "^0.2",
     "dotkernel/dot-user": "^0.2",
     "dotkernel/dot-validator": "^1.1",
-
+    "http-interop/http-middleware": "^0.4.1",
     "roave/security-advisories": "dev-master",
     "zendframework/zend-captcha": "^2.6",
     "zendframework/zend-component-installer": "^1.0 || ^0.7.0",
@@ -74,7 +74,8 @@
       "Admin\\App\\": "src/App/src",
       "Admin\\Admin\\": "src/Admin/src",
       "Admin\\User\\": "src/User/src",
-      "Admin\\Console\\": "src/Console/src"
+      "Admin\\Console\\": "src/Console/src",
+      "Tracker\\Admin\\Product\\": "src/Product/src"
     }
   },
   "autoload-dev": {

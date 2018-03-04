@@ -73,6 +73,14 @@ return [
                                         'condition' => GuardInterface::CONDITION_OR
                                     ]
                                 ],
+                                [
+                                    'route' => 'product',
+                                    'actions' => [],
+                                    'permissions' => [
+                                        'permissions' => ['superuser', 'admin'],
+                                        'condition' => GuardInterface::CONDITION_OR
+                                    ]
+                                ],
                             ]
                         ]
                     ]

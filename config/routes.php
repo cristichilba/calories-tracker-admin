@@ -6,6 +6,7 @@ use Admin\User\Controller\UserController as UserManagementController;
 use Dot\Authentication\Web\Action\LoginAction;
 use Dot\Authentication\Web\Action\LogoutAction;
 use Dot\User\Controller\UserController as UserController;
+use Tracker\Admin\Product\Controller\ProductController;
 
 /**
  * Setup routes with a single request method:
@@ -48,3 +49,6 @@ $app->route('/admin[/{action}[/{id}]]', [AdminController::class, UserController:
 // you can remove the Admin\User module together with any configuration related to it
 // TODO: we'll offer the option to use admin package without frontend in future releases, as installation scripts
 $app->route('/user[/{action}[/{id}]]', UserManagementController::class, ['GET', 'POST'], 'f_user');
+
+// Calories Tracker
+$app->route('/product[/{action}[/{id}]]', ProductController::class, ['GET', 'POST'], 'product');

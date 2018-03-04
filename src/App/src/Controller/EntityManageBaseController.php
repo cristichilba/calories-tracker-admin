@@ -107,7 +107,6 @@ abstract class EntityManageBaseController extends AbstractActionController
     {
         //get query params as sent by bootstrap-table
         $params = $this->request->getQueryParams();
-
         $options = [];
         $sort = $params['sort'] ?? '';
         $order = $params['order'] ?? 'asc';
@@ -125,13 +124,10 @@ abstract class EntityManageBaseController extends AbstractActionController
 
         $limit = (int)$params['limit'] ?? 30;
         $offset = (int)$params['offset'] ?? 0;
-
         /** @var Paginator $paginator */
         $paginator = $this->service->findAll($options, true);
         $paginator->setItemCountPerPage($limit);
         $paginator->setCurrentPageNumber(intval($offset / $limit) + 1);
-
-
         return new JsonResponse([
             'total' => $paginator->getTotalItemCount(),
             'rows' => (array)$paginator->getCurrentItems()
