@@ -47,6 +47,15 @@ abstract class AbstractEntityService implements EntityServiceInterface, MapperMa
     }
 
     /**
+     * @param $ids
+     * @return int
+     */
+    public function markAsActivated(array $ids): int
+    {
+        return $this->getEntityMapper()->updateAll(['status' => 'active'], [$this->entityIdentifier => $ids]);
+    }
+
+    /**
      * @param array $ids
      * @return int
      */

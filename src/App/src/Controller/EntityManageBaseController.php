@@ -48,6 +48,7 @@ abstract class EntityManageBaseController extends AbstractActionController
 
     const ENTITY_FORM_NAME = '';
     const ENTITY_DELETE_FORM_NAME = '';
+    const ENTITY_ACTIVATE_FORM_NAME = '';
 
     const DEFAULT_SORTED_COLUMN = '';
 
@@ -83,6 +84,7 @@ abstract class EntityManageBaseController extends AbstractActionController
         $addUri = $this->url(static::ENTITY_ROUTE_NAME, ['action' => 'add']);
         $editUri = $this->url(static::ENTITY_ROUTE_NAME, ['action' => 'edit']);
         $deleteUri = $this->url(static::ENTITY_ROUTE_NAME, ['action' => 'delete']);
+        $activateUri = $this->url(static::ENTITY_ROUTE_NAME, ['action' => 'activate']);
 
         return new HtmlResponse(
             $this->template(
@@ -93,6 +95,7 @@ abstract class EntityManageBaseController extends AbstractActionController
                     'editUri' => $editUri,
                     'addUri' => $addUri,
                     'deleteUri' => $deleteUri,
+                    'activateUri' => $activateUri,
                     'entityNameSingular' => static::ENTITY_NAME_SINGULAR,
                     'entityNamePlural' => static::ENTITY_NAME_PLURAL
                 ]
@@ -122,12 +125,13 @@ abstract class EntityManageBaseController extends AbstractActionController
             $options['search'] = $search;
         }
 
-        $limit = (int)$params['limit'] ?? 30;
-        $offset = (int)$params['offset'] ?? 0;
+        $limit = (int)($params['limit'] ?? 30);
+        $offset = (int)($params['offset'] ?? 0);
         /** @var Paginator $paginator */
         $paginator = $this->service->findAll($options, true);
         $paginator->setItemCountPerPage($limit);
         $paginator->setCurrentPageNumber(intval($offset / $limit) + 1);
+
         return new JsonResponse([
             'total' => $paginator->getTotalItemCount(),
             'rows' => (array)$paginator->getCurrentItems()
@@ -208,7 +212,6 @@ abstract class EntityManageBaseController extends AbstractActionController
             }
 
             $form->setData($data);
-
             if ($form->isValid()) {
                 $entity = $form->getData();
                 try {
@@ -410,9 +413,25 @@ abstract class EntityManageBaseController extends AbstractActionController
     /**
      * @return array
      */
+    protected function getEntityActivateSuccessMessage()
+    {
+        return [ucfirst(static::ENTITY_NAME_SINGULAR) . ' entity was successfully activated'];
+    }
+
+    /**
+     * @return array
+     */
     protected function getEntityDeleteNoChangesMessage()
     {
         return ['Deletion not confirmed or no changes were made'];
+    }
+
+    /**
+     * @return array
+     */
+    protected function getEntityActivateNoChangesMessage()
+    {
+        return ['Activation not confirmed or no changes were made'];
     }
 
     /**
@@ -423,6 +442,17 @@ abstract class EntityManageBaseController extends AbstractActionController
         return [
             ucfirst(static::ENTITY_NAME_SINGULAR) .
             ' entity could not be removed due to a server error. Please try again'
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    protected function getEntityActivateErrorMessage()
+    {
+        return [
+            ucfirst(static::ENTITY_NAME_SINGULAR) .
+            ' entity could not be activated due to a server error. Please try again'
         ];
     }
 }

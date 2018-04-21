@@ -9,6 +9,13 @@ declare(strict_types=1);
  
 namespace Tracker\Admin\Product;
 
+use Dot\Mapper\Factory\DbMapperFactory;
+use Tracker\Admin\Product\Entity\ProductEntity;
+use Tracker\Admin\Product\Form\ProductFieldset;
+use Tracker\Admin\Product\Form\ProductForm;
+use Tracker\Admin\Product\Mapper\ProductDbMapper;
+use Zend\ServiceManager\Factory\InvokableFactory;
+
 /**
  * Class ConfigProvider
  * @package Tracker\Admin\Product\Controller
@@ -35,20 +42,41 @@ class ConfigProvider
     public function getMappers()
     {
         return [
-
+            'mapper_manager' => [
+                'factories' => [
+                    ProductDbMapper::class => DbMapperFactory::class,
+                ],
+                'aliases' => [
+                    ProductEntity::class => ProductDbMapper::class,
+                ]
+            ],
         ];
     }
 
     public function getForms(): array
     {
         return [
-
+            'form_manager' => [
+                'factories' => [
+                    ProductFieldset::class => InvokableFactory::class,
+                    ProductForm::class     => InvokableFactory::class,
+                ],
+                'aliases' => [
+                    'ProductFieldset' => ProductFieldset::class,
+                    'Product' => ProductForm::class,
+                ]
+            ]
         ];
     }
     public function getTemplates(): array
     {
         return [
-
+            'paths' => [
+                'error' => [__DIR__ . '/../templates/error'],
+                'layout' => [__DIR__ . '/../templates/layout'],
+                'partial' => [__DIR__ . '/../templates/partial'],
+                'product' => [__DIR__ . '/../templates/product']
+            ]
         ];
     }
 }

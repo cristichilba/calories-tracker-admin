@@ -17,6 +17,9 @@ use Dot\Mapper\Entity\Entity;
  */
 class ProductEntity extends Entity implements \JsonSerializable
 {
+    /** @var  int */
+    protected $id;
+
     /** @var  string */
     protected $title;
 
@@ -34,6 +37,77 @@ class ProductEntity extends Entity implements \JsonSerializable
 
     /** @var string */
     protected $status;
+
+    /**
+     * ProductEntity constructor.
+     *
+     * @param string $title
+     * @param float  $carbs
+     * @param float  $protein
+     * @param float  $fat
+     * @param string $status
+     */
+    public function __construct(
+        string $title = "",
+        float $carbs = 0,
+        float $protein = 0,
+        float $fat = 0,
+        string $status = "active"
+    ) {
+        $this->title = $title;
+        $this->carbs = $carbs;
+        $this->protein = $protein;
+        $this->fat = $fat;
+        $this->status = $status;
+    }
+
+    /**
+     * Builds a product entity instance from an array
+     * @param array $product
+     * @return ProductEntity
+     */
+    public static function fromArray(array $product): ProductEntity
+    {
+        if (!isset($product['title'])) {
+            throw new \InvalidArgumentException('Product title is required.');
+        }
+
+        return new ProductEntity(
+            $product['title'],
+            $product['carbs'] ?? 0,
+            $product['protein'] ?? 0,
+            $product['fat'] ?? 0,
+            $product['status'] ?? "active"
+        );
+    }
+
+    /**
+     * Returns an empty instance of a product
+     * @return ProductEntity
+     */
+    public static function emptyProduct(): ProductEntity
+    {
+        return new ProductEntity("");
+    }
+
+    /**
+     * @return null|int
+     */
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return ProductEntity
+     */
+    public function setId(int $id): ProductEntity
+    {
+        $this->id = $id;
+        return $this;
+    }
 
     /**
      * @return string
@@ -108,9 +182,9 @@ class ProductEntity extends Entity implements \JsonSerializable
     }
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getDateCreated(): string
+    public function getDateCreated(): ?string
     {
         return $this->dateCreated;
     }
@@ -149,6 +223,7 @@ class ProductEntity extends Entity implements \JsonSerializable
     public function jsonSerialize(): array
     {
         return [
+            'id' => $this->getId(),
             'title' => $this->getTitle(),
             'carbs' => $this->getCarbs(),
             'protein' => $this->getProtein(),

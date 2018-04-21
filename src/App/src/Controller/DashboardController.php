@@ -7,7 +7,10 @@
 
 namespace Admin\App\Controller;
 
+use Admin\App\Service\EntityServiceInterface;
+use Admin\User\Service\UserService;
 use Dot\AnnotatedServices\Annotation\Service;
+use Dot\AnnotatedServices\Annotation\Inject;
 use Dot\Controller\AbstractActionController;
 use Dot\Controller\Plugin\Authentication\AuthenticationPlugin;
 use Dot\Controller\Plugin\Authorization\AuthorizationPlugin;
@@ -20,6 +23,7 @@ use Zend\Diactoros\Response\HtmlResponse;
 use Zend\Diactoros\Response\RedirectResponse;
 use Zend\Form\Form;
 use Zend\Session\Container;
+use Tracker\Admin\Product\Service\ProductService;
 
 /**
  * Class DashboardController
@@ -37,11 +41,33 @@ use Zend\Session\Container;
  */
 class DashboardController extends AbstractActionController
 {
+    /** @var  UserService */
+    protected $userService;
+
+    /** @var ProductService */
+    protected $productService;
+
+    /**
+     * DashboardController constructor.
+     * @param EntityServiceInterface $userService
+     * @param EntityServiceInterface $productService
+     * @Inject ({UserService::class, ProductService::class})
+     */
+    public function __construct(
+        EntityServiceInterface $userService,
+        EntityServiceInterface $productService
+    ) {
+        $this->userService = $userService;
+        $this->productService = $productService;
+    }
+
     /**
      * @return HtmlResponse|RedirectResponse
      */
     public function indexAction()
     {
-        return new HtmlResponse($this->template('app::dashboard'));
+        $data['userCount'] = count($this->userService->findAll());
+        $data['productCount'] = count($this->productService->findAll());
+        return new HtmlResponse($this->template('app::dashboard', $data));
     }
 }

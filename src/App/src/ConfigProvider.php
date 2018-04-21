@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace Admin\App;
 
+use Admin\App\Form\ConfirmActivateForm;
 use Admin\App\Form\ConfirmDeleteForm;
 use Zend\ServiceManager\Factory\InvokableFactory;
 
@@ -42,9 +43,11 @@ class ConfigProvider
             'form_manager' => [
                 'factories' => [
                     ConfirmDeleteForm::class => InvokableFactory::class,
+                    ConfirmActivateForm::class => InvokableFactory::class,
                 ],
                 'aliases' => [
                     'ConfirmDelete' => ConfirmDeleteForm::class,
+                    'ConfirmActivate' => ConfirmActivateForm::class,
                 ]
             ]
         ];

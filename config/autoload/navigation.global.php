@@ -30,58 +30,35 @@ return [
                                 'icon' => 'fa fa-user-circle-o',
                             ]
                         ],
+//                        [
+//                            'options' => [
+//                                'label' => 'Manage users',
+//                                'route' => [
+//                                    'route_name' => 'f_user',
+//                                    'route_params' => ['action' => 'manage']
+//                                ],
+//                                'icon' => 'fa fa-user-o',
+//                            ],
+//                        ],
                         [
                             'options' => [
-                                'label' => 'Manage users',
-                                'route' => [
-                                    'route_name' => 'f_user',
-                                    'route_params' => ['action' => 'manage']
-                                ],
-                                'icon' => 'fa fa-user-o',
-                            ],
-                        ],
-                        [
-                            'options' => [
-                                'label' => 'Submenu 1',
+                                'label' => 'Products',
                                 'route' => '',
-                                'icon' => 'fa fa-cog',
+                                'icon' => 'fa fa-cutlery',
                             ],
                             'pages' => [
                                 [
                                     'options' => [
-                                        'label' => 'Submenu link 1',
-                                        'uri' => '#',
-                                        'icon' => 'fa fa-square',
+                                        'label' => 'Manage Products',
+                                        'uri' => '/product/manage',
+                                        'icon' => 'fa fa-list',
                                     ],
                                 ],
                                 [
                                     'options' => [
-                                        'label' => 'Submenu link 2',
-                                        'uri' => '#',
-                                        'icon' => 'fa fa-square',
-                                    ],
-                                ]
-                            ]
-                        ],
-                        [
-                            'options' => [
-                                'label' => 'Submenu 2',
-                                'route' => '',
-                                'icon' => 'fa fa-gear',
-                            ],
-                            'pages' => [
-                                [
-                                    'options' => [
-                                        'label' => 'Submenu link 1',
-                                        'uri' => '#',
-                                        'icon' => 'fa fa-square',
-                                    ],
-                                ],
-                                [
-                                    'options' => [
-                                        'label' => 'Submenu link 2',
-                                        'uri' => '#',
-                                        'icon' => 'fa fa-square',
+                                        'label' => 'Pending Products',
+                                        'uri' => '/product/pending',
+                                        'icon' => 'fa fa-pause',
                                     ],
                                 ]
                             ]

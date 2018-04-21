@@ -39,7 +39,7 @@ class ProductService extends AbstractEntityService
     public function save($entity, array $options = [])
     {
         if (!$entity instanceof ProductEntity) {
-            throw new InvalidArgumentException('ProductService can save only instances of ProductEntity');
+            throw new \InvalidArgumentException('ProductService can save only instances of ProductEntity');
         }
 
         return parent::save($entity);

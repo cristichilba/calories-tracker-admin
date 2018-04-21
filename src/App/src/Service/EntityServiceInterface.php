@@ -25,6 +25,13 @@ interface EntityServiceInterface
      * @param $ids
      * @return int
      */
+    public function markAsActivated(array $ids): int;
+
+
+    /**
+     * @param $ids
+     * @return int
+     */
     public function deleteAll(array $ids): int;
 
     /**
