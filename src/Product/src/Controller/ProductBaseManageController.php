@@ -145,11 +145,8 @@ class ProductBaseManageController extends EntityManageBaseController
                 if ($form->isValid()) {
                     $ids = isset($data['ids']) && is_array($data['ids']) ? $data['ids'] : [];
                     $confirm = isset($data['confirm']) ? $data['confirm'] : 'no';
-//                    $markAsDeleted = isset($data['markAsDeleted']) ? $data['markAsDeleted'] : 'yes';
 
                     if (!empty($ids) && $confirm === 'yes') {
-//                        $markAsDeleted = $markAsDeleted === 'no' ? false : true;
-
                         try {
                             $result = $this->service->markAsActivated($ids);
 

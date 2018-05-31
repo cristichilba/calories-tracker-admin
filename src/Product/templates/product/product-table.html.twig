@@ -1,0 +1,34 @@
+{% extends '@product/bs-table.html.twig' %}
+
+{% block title %}Manage Products{% endblock %}
+
+{% block pageHeader %}
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Manage products</h1>
+        </div>
+    </div><!--/.row-->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="messages"></div>
+        </div>
+    </div><!--/.row-->
+{% endblock %}
+
+{% block tableFields %}
+    <tr>
+        <th data-field="checked" data-checkbox="true">Id</th>
+        <th data-field="id" data-sortable="true" class="id">#ID</th>
+        <th data-field="title">Title</th>
+        <th data-field="carbs">Carbs</th>
+        <th data-field="protein">Protein</th>
+        <th data-field="fat">Fat</th>
+        <th data-field="dateCreated" data-sortable="true">Created</th>
+        <th data-field="status" data-sortable="true">Status</th>
+    </tr>
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+{% endblock %}

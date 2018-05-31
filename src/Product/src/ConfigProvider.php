@@ -18,7 +18,7 @@ use Zend\ServiceManager\Factory\InvokableFactory;
 
 /**
  * Class ConfigProvider
- * @package Tracker\Admin\Product\Controller
+ * @package Tracker\Admin\Product
  */
 class ConfigProvider
 {
