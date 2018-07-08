@@ -20,7 +20,11 @@
                     </div>
                     <div class="col-sm-9 col-lg-7 widget-right">
                         <div class="large">{{ productCount }}</div>
-                        <div class="text-muted">Products</div>
+                        {% if productCount > 1 %}
+                            <div class="text-muted">Products</div>
+                        {% else %}
+                            <div class="text-muted">Product</div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -32,8 +36,12 @@
                         <i class="fa fa-cutlery fa-3x"></i>
                     </div>
                     <div class="col-sm-9 col-lg-7 widget-right">
-                        <div class="large">Dynamize</div>
-                        <div class="text-muted">Recipes</div>
+                        <div class="large">{{ recipeCount }}</div>
+                        {% if recipeCount > 1 %}
+                            <div class="text-muted">Recipes</div>
+                        {% else %}
+                            <div class="text-muted">Recipe</div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -46,7 +54,11 @@
                     </div>
                     <div class="col-sm-9 col-lg-7 widget-right">
                         <div class="large">{{ userCount }}</div>
-                        <div class="text-muted">Users</div>
+                        {% if userCount > 1 %}
+                            <div class="text-muted">User</div>
+                        {% else %}
+                            <div class="text-muted">User</div>
+                        {% endif %}
                     </div>
                 </div>
             </div>

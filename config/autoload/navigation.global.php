@@ -30,16 +30,16 @@ return [
                                 'icon' => 'fa fa-user-circle-o',
                             ]
                         ],
-//                        [
-//                            'options' => [
-//                                'label' => 'Manage users',
-//                                'route' => [
-//                                    'route_name' => 'f_user',
-//                                    'route_params' => ['action' => 'manage']
-//                                ],
-//                                'icon' => 'fa fa-user-o',
-//                            ],
-//                        ],
+                        [
+                            'options' => [
+                                'label' => 'Manage users',
+                                'route' => [
+                                    'route_name' => 'f_user',
+                                    'route_params' => ['action' => 'manage']
+                                ],
+                                'icon' => 'fa fa-user-o',
+                            ],
+                        ],
                         [
                             'options' => [
                                 'label' => 'Products',

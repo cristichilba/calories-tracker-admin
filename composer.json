@@ -76,7 +76,8 @@
       "Admin\\Admin\\": "src/Admin/src",
       "Admin\\User\\": "src/User/src",
       "Admin\\Console\\": "src/Console/src",
-      "Tracker\\Admin\\Product\\": "src/Product/src"
+      "Tracker\\Admin\\Product\\": "src/Product/src",
+      "Tracker\\Admin\\Recipe\\": "src/Recipe/src"
     }
   },
   "autoload-dev": {

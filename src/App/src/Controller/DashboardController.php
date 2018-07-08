@@ -19,6 +19,7 @@ use Dot\Controller\Plugin\Forms\FormsPlugin;
 use Dot\Controller\Plugin\TemplatePlugin;
 use Dot\Controller\Plugin\UrlHelperPlugin;
 use Psr\Http\Message\UriInterface;
+use Tracker\Admin\Recipe\Service\RecipeService;
 use Zend\Diactoros\Response\HtmlResponse;
 use Zend\Diactoros\Response\RedirectResponse;
 use Zend\Form\Form;
@@ -47,18 +48,22 @@ class DashboardController extends AbstractActionController
     /** @var ProductService */
     protected $productService;
 
+    /** @var RecipeService */
+    protected $recipeService;
     /**
      * DashboardController constructor.
      * @param EntityServiceInterface $userService
      * @param EntityServiceInterface $productService
-     * @Inject ({UserService::class, ProductService::class})
+     * @Inject ({UserService::class, ProductService::class, RecipeService::class})
      */
     public function __construct(
         EntityServiceInterface $userService,
-        EntityServiceInterface $productService
+        EntityServiceInterface $productService,
+        EntityServiceInterface $recipeService
     ) {
         $this->userService = $userService;
         $this->productService = $productService;
+        $this->recipeService = $recipeService;
     }
 
     /**
@@ -68,6 +73,8 @@ class DashboardController extends AbstractActionController
     {
         $data['userCount'] = count($this->userService->findAll());
         $data['productCount'] = count($this->productService->findAll());
+        $data['recipeCount'] = count($this->recipeService->findAll());
+
         return new HtmlResponse($this->template('app::dashboard', $data));
     }
 }

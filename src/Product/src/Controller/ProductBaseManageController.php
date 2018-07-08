@@ -34,6 +34,7 @@ use Zend\Session\Container;
  */
 class ProductBaseManageController extends EntityManageBaseController
 {
+
     const ENTITY_NAME_SINGULAR = 'product';
     const ENTITY_NAME_PLURAL = 'products';
     const ENTITY_ROUTE_NAME = 'product';
